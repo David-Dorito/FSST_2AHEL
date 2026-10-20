@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-	const char secret = 'X';
+	const char secret[] = "Password";
 	char guess;
 
 	if (scanf(" %c", &guess) != 1) {
@@ -9,11 +9,13 @@ int main() {
 		return 1;
 	}
 
-	if (guess == secret) {
-		printf("Treffer: %c", secret);
-	} else {
-		printf("Fail");
+	int matches = 0;
+	for (int i = 0; i < sizeof(secret) - 1; i++) {
+		if (secret[i] == guess) {
+			matches++;
+		}
 	}
+	printf("matches: %d\n", matches);
 
 	return 0;
 }
