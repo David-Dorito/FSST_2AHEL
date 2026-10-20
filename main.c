@@ -1,5 +1,3 @@
-// clang-format off
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -16,7 +14,7 @@ int main() {
 	srand(time(NULL));
 
 	const int solution = (rand() % SOLUTION_MAX) + 1;
-	int userNum;
+	int       userNum;
 
 	for (int tries = TRY_COUNT; tries > 0; tries--) {
 		printf("guess the number: ");
@@ -39,5 +37,3 @@ int main() {
 
 	return SUCCESS;
 }
-
-// clang-format on
