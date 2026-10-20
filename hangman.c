@@ -4,7 +4,10 @@ int main() {
 	const char secret = 'X';
 	char guess;
 
-	scanf(" %c", &guess);
+	if (scanf(" %c", &guess) != 1) {
+		printf("Ungültige eingabe");
+		return 1;
+	}
 
 	if (guess == secret) {
 		printf("Treffer: %c", secret);
