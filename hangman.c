@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 int main() {
-	char secret = 'X';
-	char guess = 'X';
+	const char secret = 'X';
+	char guess;
+
+	scanf(" %c", &guess);
 
 	if (guess == secret) {
 		printf("Treffer: %c", secret);
