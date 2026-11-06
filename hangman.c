@@ -1,6 +1,16 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #define MAX_FAILS 5
+
+int strcmp(const char* str1, const char* str2) {
+	bool isSame = true;
+	for (int i = 0; (str1[i] != '\0' || str2[i] != '\0') && isSame; i++) {
+		isSame = (str1[i] == str2[i]);
+	}
+
+	return isSame;
+}
 
 int writeMatches(const char* secret, char* guessed, int len, char guess) {
 	int matches = 0;
@@ -40,6 +50,9 @@ int main() {
 		printf("matches: %d\n", matches);
 
 		fails += (matches == 0);
+
+		if (strcmp(guessed, secret))
+			break;
 	}
 
 	return 0;
