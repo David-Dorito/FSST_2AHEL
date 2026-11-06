@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define MAX_FAILS 5
+
 int writeMatches(const char* secret, char* guessed, int len, char guess) {
 	int matches = 0;
 	for (int i = 0; i < len; i++) {
@@ -23,17 +25,22 @@ int main() {
 		guessed[i] = '_';
 	}
 
-	if (scanf(" %c", &guess) != 1) {
-		printf("Ungültige eingabe");
-		return 1;
-	}
+	int fails = 0;
+	while (fails < MAX_FAILS) {
+		if (scanf(" %c", &guess) != 1) {
+			printf("Ungültige eingabe");
+			return 1;
+		}
 
-	int matches = writeMatches(secret, guessed, sizeof(secret) - 1, guess);
+		int matches = writeMatches(secret, guessed, sizeof(secret) - 1, guess);
 
-	for (int i = 0; i < sizeof(guessed) - 1; i++) {
-		printf("%c ", guessed[i]);
+		for (int i = 0; i < sizeof(guessed) - 1; i++) {
+			printf("%c ", guessed[i]);
+		}
+		printf("matches: %d\n", matches);
+
+		fails += (matches == 0);
 	}
-	printf("matches: %d\n", matches);
 
 	return 0;
 }
